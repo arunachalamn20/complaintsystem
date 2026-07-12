@@ -101,7 +101,11 @@ public class service {
         if(complaint!=null){
             complaint.setStatus(status);
             if(status.equalsIgnoreCase("Resolved")){
-                emailservice.sendmail(complaint.getEmail(),"Issue has been Resolved","Hello "+complaint.getUsername()+" ,your issue has been resolved successfully");
+                emailservice.sendmail(complaint.getEmail(),"Issue has been Resolved","Dear " + complaint.getUsername() + ",\n\n" +
+                        "Your complaint has been resolved successfully.\n\n" +
+                        "Thank you for using our Complaint Management System.\n\n" +
+                        "Best Regards,\n" +
+                        "Service Team");
             }
             return rep.save(complaint);
         }
