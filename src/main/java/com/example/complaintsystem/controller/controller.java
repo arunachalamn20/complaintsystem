@@ -1,7 +1,10 @@
-package com.example.complaintsystem;
+package com.example.complaintsystem.controller;
 
 
 
+import com.example.complaintsystem.Complaint;
+import com.example.complaintsystem.Dashboardresponse;
+import com.example.complaintsystem.service.service;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -10,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.security.auth.Subject;
 import java.util.List;
 
 @Tag(name = "Complaint Management",description = "APIs for complaint management system")
@@ -77,7 +79,7 @@ public class controller {
 
     //deleteall
     @Operation(summary = "Delete all complaints")
-    @DeleteMapping("/delete")
+    @DeleteMapping("/delete/all")
     public ResponseEntity<String> deleteall(){
 
         ser.deleteall();
@@ -149,11 +151,8 @@ public class controller {
     //update status only
     @Operation(summary = "Update only status")
     @PutMapping("/status/{id}")
-    public ResponseEntity<Complaint> updatestatus(@PathVariable Long id, @RequestBody Complaint complaint){
+    public ResponseEntity<Complaint> updatestatus(@PathVariable Long id, @Valid @RequestBody Complaint complaint){
 
-        if(!((complaint.getStatus()).equalsIgnoreCase("Pending") || (complaint.getStatus()).equalsIgnoreCase("In Progress") || (complaint.getStatus()).equalsIgnoreCase("Resolved"))){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
         Complaint c = ser.updatestatus(id,complaint.getStatus());
         if(c==null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

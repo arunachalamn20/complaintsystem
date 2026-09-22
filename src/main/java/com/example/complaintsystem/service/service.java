@@ -1,5 +1,8 @@
-package com.example.complaintsystem;
+package com.example.complaintsystem.service;
 
+import com.example.complaintsystem.Complaint;
+import com.example.complaintsystem.Dashboardresponse;
+import com.example.complaintsystem.repository.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +29,9 @@ public class service {
     //getbyid
     public Complaint getbyid(Long id){
 
-        Complaint complaint = rep.findById(id).orElse(null);
-        if(complaint!=null){
-            return complaint;
-        }
-        return null;
+        return rep.findById(id).orElse(null);
+
+
     }
 
     //getall
