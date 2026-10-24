@@ -151,7 +151,7 @@ public class controller {
     //update status only
     @Operation(summary = "Update only status")
     @PutMapping("/status/{id}")
-    public ResponseEntity<Complaint> updatestatus(@PathVariable Long id, @Valid @RequestBody Complaint complaint){
+    public ResponseEntity<Complaint> updatestatus(@PathVariable Long id, @RequestBody Complaint complaint){
 
         Complaint c = ser.updatestatus(id,complaint.getStatus());
         if(c==null){
