@@ -17,4 +17,7 @@ public interface repository extends JpaRepository<Complaint,Long>{
     Long countByPriority(String priority);
     List<Complaint> findAllByOrderByCreatedatDesc();
     Long countByDepartment(String department);
+
+
 }
+
